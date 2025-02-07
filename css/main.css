@@ -1,0 +1,22 @@
+.min-dvh-100 {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.container {
+  max-width: 900px !important;
+}
+
+#history-wrapper {
+  max-height: 240px;
+  overflow: auto;
+}
+
+.tooltip {
+  pointer-events: none !important;
+}
+
+textarea {
+  resize: none;
+  height: 100px !important;
+}
