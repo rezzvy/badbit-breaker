@@ -4,12 +4,7 @@
 }
 
 .container {
-  max-width: 900px !important;
-}
-
-#history-wrapper {
-  max-height: 240px;
-  overflow: auto;
+  max-width: 1000px !important;
 }
 
 .tooltip,
@@ -20,6 +15,11 @@ i {
 textarea {
   resize: none;
   height: 100px !important;
+}
+
+#history-wrapper {
+  max-height: 240px;
+  overflow: auto;
 }
 
 #history-wrapper:not(:has(.history-item))::before {
