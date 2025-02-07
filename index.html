@@ -32,39 +32,48 @@
             <hr class="mt-1 mb-3" />
 
             <div class="text-center">
-              <h3 class="display-1 mb-0">0</h3>
-              <div class="fw-bold">seconds</div>
+              <div id="date-output-main">
+                <h3 class="display-1 mb-0 _main-time">0</h3>
+                <div class="fw-bold _main-unit">seconds</div>
 
-              <div class="d-flex justify-content-center gap-2 mt-2 mb-3">
-                <div class="_wrap">
-                  <span class="badge text-bg-dark"><span>0</span> years</span>
-                </div>
+                <div class="d-flex justify-content-center gap-2 mt-2 mb-3">
+                  <div class="_wrap">
+                    <span class="badge text-bg-dark"><span class="years">0</span> years</span>
+                  </div>
 
-                <div class="_wrap">
-                  <span class="badge text-bg-dark"><span>0</span> months</span>
-                </div>
+                  <div class="_wrap">
+                    <span class="badge text-bg-dark"><span class="months">0</span> months</span>
+                  </div>
 
-                <div class="_wrap">
-                  <span class="badge text-bg-dark"><span>0</span> days</span>
-                </div>
+                  <div class="_wrap">
+                    <span class="badge text-bg-dark"><span class="days">0</span> days</span>
+                  </div>
 
-                <div class="_wrap">
-                  <span class="badge text-bg-dark"><span>0</span> hours</span>
-                </div>
+                  <div class="_wrap">
+                    <span class="badge text-bg-dark"><span class="hours">0</span> hours</span>
+                  </div>
 
-                <div class="_wrap">
-                  <span class="badge text-bg-dark"><span>0</span> minutes</span>
-                </div>
+                  <div class="_wrap">
+                    <span class="badge text-bg-dark"><span class="minutes">0</span> minutes</span>
+                  </div>
 
-                <div class="_wrap">
-                  <span class="badge text-bg-dark"><span>0</span> seconds</span>
+                  <div class="_wrap">
+                    <span class="badge text-bg-dark"><span class="seconds">0</span> seconds</span>
+                  </div>
                 </div>
               </div>
 
               <div>
-                <button class="btn btn-primary fw-bold px-5">Start</button>
-                <p class="small m-0 mt-1">
-                  Or start at a specific <a href="#" class="link-dark link-opacity-75 link-opacity-100-hover fw-bold">time</a>?
+                <button class="btn btn-primary fw-bold px-5" id="start-counter">Start</button>
+                <p id="start-button-alternative" class="small m-0 mt-1">
+                  Or start at a specific
+                  <a
+                    href="javascript:void(0)"
+                    class="link-dark link-opacity-75 link-opacity-100-hover fw-bold"
+                    data-bs-toggle="modal"
+                    data-bs-target="#start-at-spesific-time-modal"
+                    >time</a
+                  >?
                 </p>
               </div>
             </div>
@@ -129,12 +138,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <p class="d-none alert alert-danger p-2 mb-1" id="alert-invalid-date">Can't choose a time in the future.</p>
             <div>
               <label>Date Time</label>
-              <input type="datetime-local" class="form-control" />
+              <input type="datetime-local" class="form-control" id="datetime-input" />
             </div>
 
-            <button class="btn btn-primary fw-bold px-5 w-100 mt-2">Start</button>
+            <button class="btn btn-primary fw-bold px-5 w-100 mt-2" id="start-at-spesific-time-button">Start</button>
           </div>
         </div>
       </div>
@@ -209,11 +219,7 @@
     </div>
 
     <script src="./lib/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      new bootstrap.Tooltip(document.body, {
-        selector: '[data-bs-toggle="tooltip"]',
-        trigger: "hover",
-      });
-    </script>
+    <script src="./lib/tickago/tickago.min.js"></script>
+    <script src="./src/main.js"></script>
   </body>
 </html>
