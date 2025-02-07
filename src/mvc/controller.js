@@ -33,7 +33,7 @@ export default class Controller {
       this.view.disable("#start-at-spesific-time-button", inputTime > currentTime);
       this.view.el("#alert-invalid-date").classList.toggle("d-none", inputTime <= currentTime);
 
-      e.target.blur();
+      // e.target.blur();
     });
 
     // Start counter at a specific time
@@ -104,7 +104,7 @@ export default class Controller {
       reason: this.view.el("#stop-reason-textarea-input").value.trim(),
     });
 
-    const { moment, startTime, endTime } = this.model.session.history.at(-1);
+    const { moment, startTime, endTime } = this.model.session.history[this.model.session.history.length - 1];
     this.view.el("#history-wrapper").innerHTML += this.view.generateHistoryItem(moment, startTime, endTime);
 
     this.model.reset();
