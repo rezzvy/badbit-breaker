@@ -260,3 +260,62 @@ historyWrapper.addEventListener("click", (e) => {
     historyDetailModal.show();
   }
 });
+
+const fileInput = document.getElementById("load-file-input");
+
+fileInput.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const data = JSON.parse(e.target.result);
+
+      if (isRunning) {
+        _stop();
+      }
+
+      localStorage.setItem("bbk_currentTime", data.currentTime || 0);
+      localStorage.setItem("bbk_status", data.status || "not_running");
+      localStorage.setItem("bbk_history", data.history || []);
+
+      if (data.status === "running") {
+        _start(parseInt(data.currentTime), true);
+      }
+
+      historyWrapper.innerHTML = "";
+      history = JSON.parse(data.history);
+      for (const item of history) {
+        console.log(item);
+        historyWrapper.innerHTML += generateHistoryItem(item.moment, item.startTime);
+      }
+    };
+
+    reader.readAsText(file);
+  }
+});
+
+document.getElementById("load-btn").addEventListener("click", (e) => {
+  fileInput.click();
+});
+
+document.getElementById("save-btn").addEventListener("click", (e) => {
+  const data = {
+    currentTime: localStorage.getItem("bbk_currentTime"),
+    status: localStorage.getItem("bbk_status"),
+    history: localStorage.getItem("bbk_history"),
+  };
+
+  const jsonStr = JSON.stringify(data, null, 2);
+  const blob = new Blob([jsonStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "badbit-breaker.json";
+  a.click();
+
+  a.remove();
+  URL.revokeObjectURL(url);
+});
