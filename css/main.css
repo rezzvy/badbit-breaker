@@ -12,11 +12,20 @@
   overflow: auto;
 }
 
-.tooltip {
+.tooltip,
+i {
   pointer-events: none !important;
 }
 
 textarea {
   resize: none;
   height: 100px !important;
+}
+
+#history-wrapper:not(:has(.history-item))::before {
+  content: "There is no history available";
+  display: block;
+  text-align: center;
+  color: gray;
+  padding: 10px;
 }

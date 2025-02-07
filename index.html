@@ -34,7 +34,7 @@
             <div class="text-center">
               <div id="date-output-main">
                 <h3 class="display-1 mb-0 _main-time">0</h3>
-                <div class="fw-bold _main-unit">seconds</div>
+                <div class="fw-bold _main-unit">sec</div>
 
                 <div class="d-flex justify-content-center gap-2 mt-2 mb-3">
                   <div class="_wrap">
@@ -83,20 +83,7 @@
             <h2 class="h5 mb-0"><i class="fa fa-history fa-fw"></i> History</h2>
             <hr class="mt-1 mb-3" />
 
-            <div id="history-wrapper" class="d-flex flex-column gap-1">
-              <div class="p-3 border d-flex justify-content-between align-items-center flex-wrap">
-                <div>
-                  <h3 class="h6 mb-0">2 seconds <span class="badge text-bg-dark">streak</span></h3>
-                  <p class="mb-0">Between <span>02/02/02</span> and <span>05/05/05</span></p>
-                </div>
-                <div>
-                  <button class="btn btn-warning fw-bold" data-bs-toggle="tooltip" data-bs-title="Detail">
-                    <i class="fa fa-info-circle fa-fw"></i>
-                  </button>
-                  <button class="btn btn-danger fw-bold" data-bs-toggle="tooltip" data-bs-title="Remove"><i class="fa fa-trash fa-fw"></i></button>
-                </div>
-              </div>
-            </div>
+            <div id="history-wrapper" class="d-flex flex-column gap-1"></div>
           </section>
         </div>
       </main>
@@ -121,10 +108,14 @@
           <div class="modal-body">
             <div>
               <label>Notes</label>
-              <textarea class="form-control" placeholder="Leave a note explaining why you stopped the counter."></textarea>
+              <textarea
+                id="stop-reason-textarea-input"
+                class="form-control"
+                placeholder="Leave a note explaining why you stopped the counter."
+              ></textarea>
             </div>
 
-            <button class="btn btn-danger fw-bold px-5 w-100 mt-2">Stop</button>
+            <button class="btn btn-danger fw-bold px-5 w-100 mt-2" id="stop-modal-button">Stop</button>
           </div>
         </div>
       </div>
@@ -160,33 +151,33 @@
           <div class="modal-body">
             <div class="row g-3">
               <div class="col-12">
-                <div class="inner text-center">
-                  <h3 class="display-1 mb-0">0</h3>
-                  <div class="fw-bold">seconds</div>
+                <div class="inner text-center" id="date-output-history">
+                  <h3 class="display-1 mb-0 history-current-time">0</h3>
+                  <div class="fw-bold history-current-unit">seconds</div>
 
                   <div class="d-flex justify-content-center gap-2 mt-2 mb-3">
                     <div class="_wrap">
-                      <span class="badge text-bg-dark"><span>0</span> years</span>
+                      <span class="badge text-bg-dark"><span class="years">0</span> years</span>
                     </div>
 
                     <div class="_wrap">
-                      <span class="badge text-bg-dark"><span>0</span> months</span>
+                      <span class="badge text-bg-dark"><span class="months">0</span> months</span>
                     </div>
 
                     <div class="_wrap">
-                      <span class="badge text-bg-dark"><span>0</span> days</span>
+                      <span class="badge text-bg-dark"><span class="days">0</span> days</span>
                     </div>
 
                     <div class="_wrap">
-                      <span class="badge text-bg-dark"><span>0</span> hours</span>
+                      <span class="badge text-bg-dark"><span class="hours">0</span> hours</span>
                     </div>
 
                     <div class="_wrap">
-                      <span class="badge text-bg-dark"><span>0</span> minutes</span>
+                      <span class="badge text-bg-dark"><span class="minutes">0</span> minutes</span>
                     </div>
 
                     <div class="_wrap">
-                      <span class="badge text-bg-dark"><span>0</span> seconds</span>
+                      <span class="badge text-bg-dark"><span class="seconds">0</span> seconds</span>
                     </div>
                   </div>
                 </div>
@@ -195,21 +186,21 @@
                 <div class="inner">
                   <h3 class="h6">Started</h3>
                   <hr class="m-0" />
-                  <p class="m-0">02/02/2002</p>
+                  <p class="m-0" id="history-start-time">02/02/2002</p>
                 </div>
               </div>
               <div class="col-6">
                 <div class="inner">
                   <h3 class="h6">Ended</h3>
                   <hr class="m-0" />
-                  <p class="m-0">02/02/2002</p>
+                  <p class="m-0" id="history-end-time">02/02/2002</p>
                 </div>
               </div>
               <div class="col-12">
                 <div class="inner">
                   <h3 class="h6">Notes</h3>
                   <hr class="m-0" />
-                  <textarea class="form-control" readonly></textarea>
+                  <textarea class="form-control" id="history-reason" readonly placeholder="No notes given"></textarea>
                 </div>
               </div>
             </div>
