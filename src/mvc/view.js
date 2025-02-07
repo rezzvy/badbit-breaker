@@ -4,11 +4,19 @@ export default class View {
     this.stopModal = new bootstrap.Modal("#stop-modal");
     this.startAtSpesificTimeModal = new bootstrap.Modal("#start-at-spesific-time-modal");
     this.historyDetailModal = new bootstrap.Modal("#history-detail-modal");
+
+    this.els = {};
   }
 
   // Helper method to select an element
   el(target) {
-    return typeof target === "string" ? document.querySelector(target) : target;
+    if (typeof target !== "string") return target;
+
+    if (!(target in this.els)) {
+      this.els[target] = document.querySelector(target);
+    }
+
+    return this.els[target];
   }
 
   // Add event listener to a target element
