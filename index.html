@@ -12,7 +12,7 @@
   <body class="bg-body-tertiary">
     <div class="min-dvh-100 d-flex flex-column gap-3">
       <header class="text-bg-dark py-3">
-        <div class="container d-flex justify-content-between align-items-center">
+        <div class="container d-flex align-items-center justify-content-between flex-column flex-sm-row text-center text-sm-start gap-2 gap-sm-0">
           <div>
             <h1 class="h4 fw-bold text-uppercase m-0">Badbit Breaker</h1>
             <p class="lead m-0">Count the days since you tried quitting</p>
@@ -37,7 +37,7 @@
                 <h3 class="display-1 mb-0 _main-time">0</h3>
                 <div class="fw-bold _main-unit">sec</div>
 
-                <div class="d-flex justify-content-center gap-2 mt-2 mb-3">
+                <div class="d-flex justify-content-center gap-2 mt-2 mb-3 flex-wrap">
                   <div class="_wrap">
                     <span class="badge text-bg-dark"><span class="years">0</span> years</span>
                   </div>
@@ -65,7 +65,7 @@
               </div>
 
               <div>
-                <button class="btn btn-primary fw-bold px-5" id="start-counter">Start</button>
+                <button class="btn btn-primary fw-bold px-4 px-sm-5" id="start-counter">Start</button>
                 <p id="start-button-alternative" class="small m-0 mt-1">
                   Or start at a specific
                   <a
@@ -91,7 +91,7 @@
 
       <footer class="pb-1">
         <div class="container">
-          <p class="mb-0">
+          <p class="mb-0 small">
             Made with lots of love by
             <a href="https://github.com/rezzvy" class="link-dark link-opacity-100 link-opacity-75-hover fw-bold">Muhammad Reza Fahlevi</a>
           </p>
@@ -156,7 +156,7 @@
                   <h3 class="display-1 mb-0 history-current-time">0</h3>
                   <div class="fw-bold history-current-unit">seconds</div>
 
-                  <div class="d-flex justify-content-center gap-2 mt-2 mb-3">
+                  <div class="d-flex justify-content-center gap-2 mt-2 mb-3 flex-wrap">
                     <div class="_wrap">
                       <span class="badge text-bg-dark"><span class="years">0</span> years</span>
                     </div>
@@ -183,14 +183,14 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-12 col-sm-6">
                 <div class="inner">
                   <h3 class="h6">Started</h3>
                   <hr class="m-0" />
                   <p class="m-0" id="history-start-time">02/02/2002</p>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-12 col-sm-6">
                 <div class="inner">
                   <h3 class="h6">Ended</h3>
                   <hr class="m-0" />

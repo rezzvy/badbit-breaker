@@ -74,7 +74,7 @@ function renderTime(boolean, time, init = false) {
 
 function generateHistoryItem(streak, startTime, endTime) {
   return `
-            <div class="history-item p-3 border d-flex justify-content-between align-items-center flex-wrap">
+            <div class="history-item p-3 border d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div>
                   <h3 class="h6 mb-0">${streak} <span class="badge text-bg-dark">streak</span></h3>
                   <p class="mb-0">Ended at ${new Date(endTime)}</p>
@@ -288,7 +288,7 @@ fileInput.addEventListener("change", (event) => {
       history = JSON.parse(data.history);
       for (const item of history) {
         console.log(item);
-        historyWrapper.innerHTML += generateHistoryItem(item.moment, item.startTime);
+        historyWrapper.innerHTML += generateHistoryItem(item.moment, item.startTime, item.endTime);
       }
     };
 
