@@ -6,6 +6,11 @@ export default class View {
     this.historyDetailModal = new bootstrap.Modal("#history-detail-modal");
 
     this.els = new Map();
+
+    new bootstrap.Tooltip(document.body, {
+      selector: '[data-bs-toggle="tooltip"]',
+      trigger: "hover",
+    });
   }
 
   // Helper method to select an element
@@ -39,23 +44,41 @@ export default class View {
       button.textContent = "Stop";
       button.classList.replace("btn-primary", "btn-danger");
       this.disable("#start-button-alternative", true);
+      this.el("#main-counter-started-at").classList.remove("d-none");
     } else {
       button.textContent = "Start";
       button.classList.replace("btn-danger", "btn-primary");
       this.disable("#start-button-alternative", false);
+      this.setTimer([]);
 
-      this.setTimer();
+      this.el("#main-counter-started-at").classList.add("d-none");
+      this.el("#main-counter-started-at span").textContent = "N/A";
     }
   }
 
   // Updates the displayed timer values
   setTimer(data = [], isMain = true) {
-    const [currentTime = "0", currentUnit = "sec", years = "0", months = "0", days = "0", hours = "0", minutes = "0", seconds = "0"] = data;
+    const [currentTime = "0", currentUnit = "sec", years = "0", months = "0", days = "0", hours = "0", minutes = "0", seconds = "0", raw = {}] = data;
 
     const prefix = isMain ? "#date-output-main" : "#date-output-history";
 
     this.el(`${prefix} ${isMain ? "._main-time" : ".history-current-time"}`).textContent = currentTime;
     this.el(`${prefix} ${isMain ? "._main-unit" : ".history-current-unit"}`).textContent = currentUnit;
+
+    if (data.length !== 0) {
+      this.el(`${prefix} .months`).parentElement.parentElement.dataset.bsTitle = `Raw data: ${raw.months.toLocaleString()} months`;
+      this.el(`${prefix} .days`).parentElement.parentElement.dataset.bsTitle = `Raw data: ${raw.days.toLocaleString()} days`;
+      this.el(`${prefix} .hours`).parentElement.parentElement.dataset.bsTitle = `Raw data: ${raw.hours.toLocaleString()} hours`;
+      this.el(`${prefix} .minutes`).parentElement.parentElement.dataset.bsTitle = `Raw data: ${raw.minutes.toLocaleString()} minutes`;
+      this.el(`${prefix} .seconds`).parentElement.parentElement.dataset.bsTitle = `Raw data: ${raw.seconds.toLocaleString()} seconds`;
+    } else {
+      delete this.el(`${prefix} .months`).parentElement.parentElement.dataset.bsTitle;
+      delete this.el(`${prefix} .days`).parentElement.parentElement.dataset.bsTitle;
+      delete this.el(`${prefix} .hours`).parentElement.parentElement.dataset.bsTitle;
+      delete this.el(`${prefix} .minutes`).parentElement.parentElement.dataset.bsTitle;
+      delete this.el(`${prefix} .seconds`).parentElement.parentElement.dataset.bsTitle;
+    }
+
     this.el(`${prefix} .years`).textContent = years;
     this.el(`${prefix} .months`).textContent = months;
     this.el(`${prefix} .days`).textContent = days;

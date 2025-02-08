@@ -38,8 +38,8 @@ export default class Model {
   calculateTime(time, modal = null) {
     if (modal) {
       const [currentTime, currentUnit] = modal.moment.split(" ");
-      const { years, months, days, hours, minutes, seconds } = TickAgo.compare(modal.startTime, modal.endTime);
-      return [currentTime, currentUnit, years, months, days, hours, minutes, seconds];
+      const { years, months, days, hours, minutes, seconds, raw } = TickAgo.compare(modal.startTime, modal.endTime);
+      return [currentTime, currentUnit, years, months, days, hours, minutes, seconds, raw];
     }
 
     const moment = TickAgo.moment(time, {
@@ -47,8 +47,8 @@ export default class Model {
     });
 
     const [currentTime, currentUnit] = moment.split("@");
-    const { years, months, days, hours, minutes, seconds } = TickAgo.compare(time, Date.now());
-    return [currentTime, currentUnit, years, months, days, hours, minutes, seconds];
+    const { years, months, days, hours, minutes, seconds, raw } = TickAgo.compare(time, Date.now());
+    return [currentTime, currentUnit, years, months, days, hours, minutes, seconds, raw];
   }
 
   // Loads session data from localStorage

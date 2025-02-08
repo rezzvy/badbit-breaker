@@ -58,6 +58,10 @@ export default class Controller {
         this.showHistoryDetail(e.target.dataset.startTime);
       } else if (e.target.matches(".history-remove-btn")) {
         this.model.deleteHistory(e.target.dataset.startTime);
+
+        const tooltipInstance = bootstrap.Tooltip.getInstance(e.target);
+        if (tooltipInstance) tooltipInstance.dispose();
+
         e.target.closest(".history-item").remove();
       }
     });
@@ -85,6 +89,13 @@ export default class Controller {
     this.view.on("#save-btn", "click", () => {
       this.view.download("bbk-save.json", this.model.exportSession());
     });
+
+    this.view.on("#date-output-main", "mouseout", (e) => {
+      if (e.target.matches("._wrap")) {
+        const tooltipInstance = bootstrap.Tooltip.getInstance(e.target);
+        if (tooltipInstance) tooltipInstance.dispose();
+      }
+    });
   }
 
   // Starts the timer
@@ -94,6 +105,8 @@ export default class Controller {
     this.model.saveSession();
     this.view.start(true);
     this.runTimer(time, initDisplay);
+
+    this.view.el("#main-counter-started-at span").textContent = new Date(time);
   }
 
   // Stops the timer and records history
