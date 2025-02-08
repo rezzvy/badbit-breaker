@@ -38,7 +38,10 @@ export default class Controller {
 
     // Start counter at a specific time
     this.view.on("#start-at-spesific-time-button", "click", () => {
-      const time = new Date(this.view.el("#datetime-input").value).getTime();
+      const inputTime = this.view.el("#datetime-input").value.trim();
+      if (inputTime === "") return alert("Please enter the time as well.");
+
+      const time = new Date(inputTime).getTime();
       this.start(time, true);
       this.view.startAtSpesificTimeModal.hide();
     });
